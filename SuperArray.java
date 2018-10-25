@@ -80,12 +80,28 @@ private void resize() {
 
 public boolean contains(String target){
   for (int i = 0; i < data.length; i ++){
-    if (target.substring(i, i + target.length() - 1).equals(target))
+    if (data[i] == target){
     return true;
-  }
+  }}
   return false;
 }
 
+public void add(int index, String element){
+int x = index;
+  for (;x + 1< data.length; x ++){
+    data [x] = data [x+1];
+  }
+data[index] = element;
+}
+
+public int indexOf(String element){
+  for (int i = 0; i < data.length; i ++){
+    if (data[i] == element){
+    return i;
+  }
+}
+return -1;
+}
 
 
 
