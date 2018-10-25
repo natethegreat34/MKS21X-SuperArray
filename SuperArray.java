@@ -86,14 +86,6 @@ public boolean contains(String target){
   return false;
 }
 
-public void add(int index, String element){
-int x = index;
-  for (;x + 1< data.length; x ++){
-    data [x] = data [x+1];
-  }
-data[index] = element;
-}
-
 public int indexOf(String element){
   for (int i = 0; i < data.length; i ++){
     if (data[i] == element){
@@ -103,8 +95,39 @@ public int indexOf(String element){
 return -1;
 }
 
+public int lastIndexOf(String element){
+  for (int i = data.length - 1; i >= 0 ; i --){
+    if (data[i] == element){
+    return i;
+  }
+}
+return -1;
+}
 
 
+public void add(int index, String element){
+int x = index;
+//if (index < 0 || index > size()){
+  //System.out.println(null);
+//}
+
+  for (;x + 1< data.length; x ++){
+    data [x + 1] = data [x];
+  }
+data[index] = element;
+}
+
+public String remove(int index){
+String y = data [index];
+int x = index + 1;
+if (index < 0 || index >= size()){
+  return null;
+}
+data [index] = data [index + 1];
+for (;x + 1< data.length; x ++){
+  data [x] = data [x+1];
+}
+return y;}
 
 
 
