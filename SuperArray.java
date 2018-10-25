@@ -22,8 +22,8 @@ public class SuperArray {
       if (size == data.length){
         this.resize();
       }
-      data[size] = elem;
-      size += 1;
+      else {data[size] = elem;
+      size += 1;}
       return true;
         }
     //Got help from Tiffany Cao on toString
@@ -77,6 +77,14 @@ private void resize() {
   }
 }}
 //------------- Phase 3 -------------
+
+public boolean contains(String target){
+  for (int i = 0; i < data.length; i ++){
+    if (target.substring(i, i + target.length() - 1).equals(target))
+    return true;
+  }
+  return false;
+}
 
 
 
