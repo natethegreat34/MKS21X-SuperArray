@@ -129,6 +129,18 @@ for (;x + 1< data.length; x ++){
 }
 return y;}
 
+public boolean remove(String element){
+  for (int i = 0; i < data.length; i ++){
+    if (data[i] == element){
+      for (;i + 1< data.length; i ++){
+        data [i] = data [i+1];
+      }
+      return true;
+  }
+}
+return false;
+}
+
 
 
 
