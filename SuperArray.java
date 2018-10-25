@@ -22,24 +22,20 @@ public class SuperArray {
       if (size == data.length){
         this.resize();
       }
-      if (size < data.length){
-      for (int i = 0; i < data.length; i ++) {
-        if (i == size){
-          data[i] = elem;
+      data[size] = elem;
+      size += 1;
+      return true;
         }
-      }
-    }
-return true;
-    }
     //Got help from Tiffany Cao on toString
     public String toString () {
       String x = "[";
       for(int a = 0; a < size; a++){
-      x = x + data[a];
+      x += data[a];
       if(a < size - 1){
         x = x + ", ";
       }
-    }return x + "]";
+    }
+    return x + "]";
     }
 
     public String toStringDebug() {
@@ -64,7 +60,7 @@ return true;
       else { return data [index];}
       }
 
-      private String set(int l, String p){
+      public String set(int l, String p){
         if (l < 0 || l >= size()){
           return null;
         }
@@ -80,6 +76,7 @@ private void resize() {
     x[i] = data[i];
   }
 }}
+//------------- Phase 3 -------------
 
 
 
