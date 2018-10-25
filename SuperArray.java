@@ -64,7 +64,9 @@ public class SuperArray {
         if (l < 0 || l >= size()){
           return null;
         }
-        return "yeah";
+        String x = data [l];
+        data [l] = p;
+        return x;
       }
       //------------- Phase 2 -------------
 
