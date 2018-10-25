@@ -19,16 +19,17 @@ public class SuperArray {
       else {return false;}
     }
     public boolean add(String elem) {
+      if (size == data.length){
+        this.resize();
+      }
       if (size < data.length){
       for (int i = 0; i < data.length; i ++) {
         if (i == size){
           data[i] = elem;
-          return true;
         }
       }
     }
-
-      return false;
+return true;
     }
     //Got help from Tiffany Cao on toString
     public String toString () {
@@ -71,11 +72,15 @@ public class SuperArray {
       }
       //------------- Phase 2 -------------
 
-//private void resize() {
-  //x = data;
-  //if (size <= x.length){
-  //x = new String[x.length * 2];
-//}}
+private void resize() {
+  String[] x = data;
+  if (size <= data.length){
+  x = new String[data.length * 2];
+  for (int i = 0; i < data.length; i ++){
+    x[i] = data[i];
+  }
+}}
+
 
 
 
