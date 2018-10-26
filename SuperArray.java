@@ -109,17 +109,20 @@ return -1;
 
 public void add(int index, String element){
 int x = index;
-//if (index < 0 || index > size()){
-  //System.out.println(null);
-//}
+if (index < 0 || index > size()){
+  System.out.println("Error  - The index is out of range");
+  return;
+}
 
-  for (;x + 1< data.length; x ++){
-    data [x + 1] = data [x];
+  for (;x < size (); x ++){
+    data [x] = data [x - 1];
   }
 data[index] = element;
 }
 
 public String remove(int index){
+  if (index < 0 || index > size()){
+    return null;}
 String y = data [index];
 int x = index + 1;
 if (index < 0 || index >= size()){
