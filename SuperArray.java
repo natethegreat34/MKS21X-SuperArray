@@ -72,7 +72,7 @@ public class SuperArray {
 
 private void resize() {
   String[] x = data;
-  if (size <= data.length){
+  if (size == data.length){
   x = new String[data.length * 2];
   for (int i = 0; i < data.length; i ++){
     x[i] = data[i];
