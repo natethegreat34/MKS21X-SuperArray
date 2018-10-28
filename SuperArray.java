@@ -2,7 +2,10 @@
 public class SuperArray {
   private String[] data;
   private int size;
+  public SuperArray(){
+    data = new String[10];
 
+  }
      public SuperArray(int startingCapacity){
        data = new String[startingCapacity];
 
@@ -57,14 +60,14 @@ public class SuperArray {
   }
     public String get(int index){
       if (index < 0 || index >= size()){
-        throw new IndexOutOfBoundsException("indexOutOfBoundsException");
+        throw new IndexOutOfBoundsException();
       }
       else { return data [index];}
       }
 
       public String set(int l, String p){
         if (l < 0 || l >= size()){
-          throw new IndexOutOfBoundsException("indexOutOfBoundsException");
+          throw new IndexOutOfBoundsException();
         }
         String x = data [l];
         data [l] = p;
@@ -112,8 +115,8 @@ return -1;
 public void add(int index, String element){
 int x = index;
 if (index < 0 || index > size()){
-  throw new IndexOutOfBoundsException("indexOutOfBoundsException");
-  
+  throw new IndexOutOfBoundsException();
+
 }
 
   for (;x < size (); x ++){
@@ -124,7 +127,7 @@ data[index] = element;
 
 public String remove(int index){
   if (index < 0 || index > size()){
-    throw new IndexOutOfBoundsException("indexOutOfBoundsException");}
+    throw new IndexOutOfBoundsException();}
 String y = data [index];
 int x = index + 1;
 if (index < 0 || index >= size()){
