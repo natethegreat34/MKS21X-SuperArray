@@ -50,7 +50,13 @@ public class DDDriver {
           t.set(0, "trubbish");
           System.out.println(t);
           System.out.println("");
-
+          System.out.println("-------------------");
+          try{
+                  SuperArray o = new SuperArray(-1);
+          }catch (IllegalArgumentException  e) {
+                  System.out.println("hold up, error caught!");
+          }
+          System.out.println("-------------------");
           try{
                   System.out.println("adding skitty at 5; should throw error");
                   t.set(5, "skitty");
@@ -157,4 +163,5 @@ public class DDDriver {
           t.remove("frick");
           System.out.println(t);
   }
+
   }
