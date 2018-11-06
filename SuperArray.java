@@ -2,11 +2,13 @@
 public class SuperArray {
   private String[] data;
   private int size;
+
   public SuperArray(){
     data = new String[10];
-
+    size = 0;
   }
      public SuperArray(int startingCapacity){
+       size = 0;
        if (startingCapacity < 0){
          throw new  IllegalArgumentException ("can't be negative");
        }
@@ -27,45 +29,35 @@ public class SuperArray {
       else {return false;}
     }
     public boolean add(String elem) {
-      if (size == data.length){
-        this.resize();
+      if (size >= data.length){
+        resize();
       }
-      else {data[size] = elem;
-      size += 1;}
+      data[size] = elem;
+      size ++;
       return true;
         }
     //Got help from Tiffany Cao on toString
-    public String toString () {
-      if (size == 0){
-        return "[]";
-      }
-      String x = "[";
-      for(int a = 0; a < size; a++){
-      x += data[a];
-      if(a < size - 1){
-        x = x + ", ";
-      }
-    }
-    return x + "]";
-    }
-
-    public String toStringDebug() {
-      String y = "";
-      for (int z = 0; z < data.length; z++){
-        if (z < size){
-          y = y + data[z];
-        }
-        if(z >= size){
-       y =  y +"null";
-     }
-     if(z < data.length-1){
-       y = y + ", ";
-     }
-    }
-    return y + "]";
+    public String toString() {
+  String s = ("[");
+  for (int i = 0; i < size - 1; i++){
+    s+=(data[i] + ", ");
   }
+  if (size != 0) s+=(data[size - 1]);
+  s += "]";
+  return s;
+}
+
+public String toStringDebug(){
+  String s = ("[");
+  for (int i = 0; i < data.length - 1; i++){
+    s+=(data[i] + ", ");
+  }
+  if (data.length != 0) {s+=(data[data.length - 1]);}
+  s += "]";
+  return s;
+}
     public String get(int index){
-      if (index < 0 || index >= size()){
+      if (index < 0 || index >= size() || size == 0){
         throw new IndexOutOfBoundsException();
       }
       else { return data [index];}
@@ -82,17 +74,16 @@ public class SuperArray {
       //------------- Phase 2 -------------
 
 private void resize() {
-  String[] x = data;
-  if (size == data.length){
-  x = new String[data.length * 2 + 1];
+  String[] x = new String[data.length * 2 + 1];
   for (int i = 0; i < data.length; i ++){
     x[i] = data[i];
   }
-}}
+  data = x;
+}
 //------------- Phase 3 -------------
 
 public boolean contains(String target){
-  for (int i = 0; i < data.length; i ++){
+  for (int i = 0; i < size; i ++){
     if (data[i].equals(target)){
     return true;
   }}
@@ -100,7 +91,7 @@ public boolean contains(String target){
 }
 
 public int indexOf(String element){
-  for (int i = 0; i < data.length; i ++){
+  for (int i = 0; i < size; i ++){
     if (data[i].equals(element)){
     return i;
   }
@@ -109,7 +100,7 @@ return -1;
 }
 
 public int lastIndexOf(String element){
-  for (int i = data.length - 1; i >= 0 ; i --){
+  for (int i = size - 1; i >= 0 ; i --){
     if (data[i].equals( element)){
     return i;
   }
@@ -117,17 +108,18 @@ public int lastIndexOf(String element){
 return -1;
 }
 
-
+//Got help for Theodore Wu
 public void add(int index, String element) {
    if (index < 0 || index > size()){
-     throw new IndexOutOfBoundsException("invalid index given: "+ index);
+     throw new IndexOutOfBoundsException();
    }
 
    if (index == size) {
      this.add(element);
    }
    else {
-     if (size >= data.length) resize();
+     if (size >= data.length) {
+       resize();}
      String prev;
      String newly = element;
      for (int i = index; i <=size; i++){
@@ -141,17 +133,13 @@ public void add(int index, String element) {
 
 
 public String remove(int index){
-  if (index < 0 || index > size()){
+  if (index < 0 || index >= size()){
     throw new IndexOutOfBoundsException();}
 String y = data [index];
-int x = index + 1;
-if (index < 0 || index >= size()){
-  return null;
+for (int i = index; i < size - 1; i ++ ){
+  data [i] = data [i+1];
 }
-data [index] = data [index + 1];
-for (;x + 1< data.length; x ++){
-  data [x] = data [x+1];
-}
+size--;
 return y;}
 
 public boolean remove(String element){
