@@ -10,7 +10,7 @@ public class SuperArray {
        if (startingCapacity < 0){
          throw new  IllegalArgumentException ("can't be negative");
        }
-       data = new String[startingCapacity];
+      else{ data = new String[startingCapacity];}
 
      }
     public void clear () {
@@ -36,6 +36,9 @@ public class SuperArray {
         }
     //Got help from Tiffany Cao on toString
     public String toString () {
+      if (size == 0){
+        return "[]";
+      }
       String x = "[";
       for(int a = 0; a < size; a++){
       x += data[a];
@@ -90,7 +93,7 @@ private void resize() {
 
 public boolean contains(String target){
   for (int i = 0; i < data.length; i ++){
-    if (data[i] == target){
+    if (data[i].equals(target)){
     return true;
   }}
   return false;
@@ -98,7 +101,7 @@ public boolean contains(String target){
 
 public int indexOf(String element){
   for (int i = 0; i < data.length; i ++){
-    if (data[i] == element){
+    if (data[i].equals(element)){
     return i;
   }
 }
@@ -107,7 +110,7 @@ return -1;
 
 public int lastIndexOf(String element){
   for (int i = data.length - 1; i >= 0 ; i --){
-    if (data[i] == element){
+    if (data[i].equals( element)){
     return i;
   }
 }
@@ -115,18 +118,27 @@ return -1;
 }
 
 
-public void add(int index, String element){
-int x = index;
-if (index < 0 || index > size()){
-  throw new IndexOutOfBoundsException();
+public void add(int index, String element) {
+   if (index < 0 || index > size()){
+     throw new IndexOutOfBoundsException("invalid index given: "+ index);
+   }
 
-}
+   if (index == size) {
+     this.add(element);
+   }
+   else {
+     if (size >= data.length) resize();
+     String prev;
+     String newly = element;
+     for (int i = index; i <=size; i++){
+       prev = data[i];
+       data[i] = newly;
+       newly = prev;
+     }
+     size++;
+   }
+   }
 
-  for (;x < size (); x ++){
-    data [x] = data [x - 1];
-  }
-data[index] = element;
-}
 
 public String remove(int index){
   if (index < 0 || index > size()){
@@ -144,7 +156,7 @@ return y;}
 
 public boolean remove(String element){
   for (int i = 0; i < data.length; i ++){
-    if (data[i] == element){
+    if (data[i].equals(element)){
       for (;i + 1< data.length; i ++){
         data [i] = data [i+1];
       }
